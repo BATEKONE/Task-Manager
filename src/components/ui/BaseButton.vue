@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps({
-    type: Boolean, 
+    type: Boolean,
     disabled: Boolean
 })
 
@@ -8,5 +8,5 @@ defineProps({
 </script>
 
 <template>
-
+    <button>Добавить</button>
 </template>
