@@ -3,20 +3,23 @@ import { ref } from 'vue'
 import BaseInput from '../ui/BaseInput.vue';
 import BaseButton from '../ui/BaseButton.vue';
 
-const newTaskTitle = ref('')
+const newTaskTitle = ref("")
+let id = ref(1);
 
 function submitForm() {
-    if (newTaskTitle.value == '') {
-        // Не добавлять
+    if (newTaskTitle.value != "") {
+        localStorage.setItem(`${id.value}`, newTaskTitle.value);
+        id.value++;
     }
 
     newTaskTitle.value = ''
+    console.log(newTaskTitle.value)
 }
 </script>
 
 <template>
     <div>
-        <input type="text">
-        <BaseButton @click="submitForm" />
+        <BaseInput v-model="newTaskTitle" />
+        <BaseButton @click="submitForm()" />
     </div>
 </template>
