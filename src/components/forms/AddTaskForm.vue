@@ -2,24 +2,22 @@
 import { ref } from 'vue'
 import BaseInput from '../ui/BaseInput.vue';
 import BaseButton from '../ui/BaseButton.vue';
+import { useTasksStore } from '@/stores/tasks';
 
-const newTaskTitle = ref("")
-let id = ref(1);
+const title = ref("")
+const store = useTasksStore();
 
 function submitForm() {
-    if (newTaskTitle.value != "") {
-        localStorage.setItem(`${id.value}`, newTaskTitle.value);
-        id.value++;
-    }
+    if (!title.value.trim()) return
 
-    newTaskTitle.value = ''
-    console.log(newTaskTitle.value)
+    store.addTask(title.value);
+    title.value = '';
 }
 </script>
 
 <template>
     <div>
-        <BaseInput v-model="newTaskTitle" />
-        <BaseButton @click="submitForm()" />
+        <BaseInput v-model="title" placeholder="Новая задача" />
+        <BaseButton @click="submitForm">Добавить задачу</BaseButton>
     </div>
 </template>

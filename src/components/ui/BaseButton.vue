@@ -1,12 +1,14 @@
 <script setup lang="ts">
-defineProps({
-    type: Boolean,
-    disabled: Boolean
-})
+defineProps<{
+    type?: 'button' | 'submit',
+    disabled?: boolean
+}>()
 
 // Сделать defineSlots
 </script>
 
 <template>
-    <button>Добавить</button>
+    <button :disabled="disabled" :type="type || 'button'">
+        <slot />
+    </button>
 </template>
