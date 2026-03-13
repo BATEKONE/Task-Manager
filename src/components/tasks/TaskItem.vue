@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import { useTasksStore } from '@/stores/tasks';
-import { Task } from '@/types/task';
+import type { Task } from '@/types/task';
 
-defineProps<{
+const props = defineProps<{
     task: Task
 }>()
 
 const store = useTasksStore();
 
 function toggleTask() {
-
+    store.toggleTask(props.task.id);
 }
 
 function removeTask() {
-
+    store.removeTask(props.task.id)
 }
 </script>
 
 <template>
     <div>
-        <span>{{ task.title }}</span>
-        <input type="checkbox" :checked="task.completed" @change="toggleTask" />
+        <input type="checkbox" :checked="props.task.completed" @change="toggleTask" />
+        <span>{{ props.task.title }}</span>
         <button @click="removeTask">❌</button>
     </div>
 </template>

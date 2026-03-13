@@ -5,9 +5,7 @@ import TaskItem from './TaskItem.vue';
 
 const store = useTasksStore();
 
-const tasks = computed(() => {
-
-})
+const tasks = computed(() => store.tasks)
 </script>
 
 <template>
