@@ -29,6 +29,24 @@ export const useTasksStore = defineStore('tasks', {
             if (task) {
                 task.completed = !task.completed;
             }
+        },
+
+        setFilter(filter: 'all' | 'active' | 'completed') {
+            this.filter = filter
+        }
+    },
+
+    getters: {
+        filteredTasks(state) {
+            if (state.filter === 'active') {
+                return state.tasks.filter(task => !task.completed)
+            }
+
+            if (state.filter === 'completed') {
+                return state.tasks.filter(task => task.completed)
+            }
+
+            return state.tasks
         }
     }
 })
